@@ -20,6 +20,16 @@ const TicketForm: React.FC = () => {
     }
   };
 
+  const GetcurrentTicket =  async() =>{
+    try{
+      const response = await axios.get('/api/tickets');
+      console.log(response.data);
+    }catch(error){
+      console.error(error);
+    }
+  }
+
+
   const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
@@ -31,6 +41,10 @@ const TicketForm: React.FC = () => {
   const handleContactInfoChange = (e: ChangeEvent<HTMLInputElement>) => {
     setContactInfo(e.target.value);
   };
+
+  GetcurrentTicket().then((data) => {
+    console.log(data);
+  })
 
   return (
     <form onSubmit={handleSubmit}>
