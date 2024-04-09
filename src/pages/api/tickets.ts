@@ -25,13 +25,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             createdTimestamp: 'desc',
           },
         });
-        console.log(tickets);
         res.status(200).json(tickets);
       }catch (error){
         res.status(500).json({ error: 'Internal Server Error' });
-        console.error(error)
-      
       }
+  } else if(req.method === 'PUT'){
+    // const {}
+    //TODO: Implement PUT method to update ticket status and other information
   }
   
   else {
