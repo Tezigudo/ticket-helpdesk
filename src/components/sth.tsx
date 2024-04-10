@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DragDropContext, Droppable, Draggable, DropResult, DraggableProvided, DraggableStateSnapshot, DroppableProvided, DroppableStateSnapshot } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable, Draggable, DropResult, DraggableProvided} from 'react-beautiful-dnd';
 import { Box, Typography, Button, Container } from '@mui/material';
 
 interface TodoItemProps {
@@ -80,9 +80,10 @@ const DndKitGuide = () => {
           Dnd-kit Guide
         </Typography>
         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <TodoList title="Todo" items={todos} />
-          <TodoList title="Doing" items={[]} />
-          <TodoList title="Done" items={[]} />
+          <TodoList title="Pending" items={todos} />
+          <TodoList title="Accepted" items={[]} />
+          <TodoList title="Resolved" items={[]} />
+          <TodoList title="Rejected" items={[]} />
         </Box>
         <Button variant="contained" sx={{ mt: 2 }}>
           Add Container
