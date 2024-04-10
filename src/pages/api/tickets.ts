@@ -1,9 +1,8 @@
-import prisma from '@/lib/prisma';
-import { NextApiRequest, NextApiResponse } from 'next';
-
+import prisma from "@/lib/prisma";
+import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === 'POST') {
+  if (req.method === "POST") {
     const { title, description, contactInfo } = req.body;
     try {
       const ticket = await prisma.ticket.create({
@@ -15,26 +14,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       });
       res.status(201).json(ticket);
     } catch (error) {
-      res.status(500).json({ error: 'Internal Server Error' });
+      res.status(500).json({ error: "Internal Server Error" });
       console.error(error);
     }
-  } else if(req.method ==='GET'){
-      try{
-        const tickets = await prisma.ticket.findMany({
-          orderBy: {
-            createdTimestamp: 'desc',
-          },
-        });
-        res.status(200).json(tickets);
-      }catch (error){
-        res.status(500).json({ error: 'Internal Server Error' });
-      }
-  } else if(req.method === 'PUT'){
-    // const {}
-    //TODO: Implement PUT method to update ticket status and other information
-  }
-  
-  else {
-    res.status(405).json({ error: 'Method Not Allowed' });
+  } else if (req.method === "GET") {
+    try {
+      const tickets = await prisma.ticket.findMany({
+        orderBy: {
+          createdTimestamp: "desc",
+        },
+      });
+      res.status(200).json(tickets);
+    } catch (error) {
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  } else {
+    res.status(405).json({ error: "Method Not Allowed" });
   }
 }
