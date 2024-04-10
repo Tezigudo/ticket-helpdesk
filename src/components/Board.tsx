@@ -26,7 +26,7 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({ tickets }) => {
     <Container maxWidth="xl">
       <Grid container spacing={3}>
         <Grid item xs={3}>
-          <Paper>
+          <Paper elevation={10}>
             <Typography variant="h6" align="center">Pending</Typography>
             {pendingTickets.map(ticket => (
               <Paper key={ticket.id}>
@@ -38,7 +38,7 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({ tickets }) => {
             ))}
           </Paper>
         </Grid>
-        <Grid item xs={3}>
+        {/* <Grid item xs={3}>
           <Paper>
             <Typography variant="h6" align="center">Accept</Typography>
             {pendingTickets.map(ticket => (
@@ -50,8 +50,8 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({ tickets }) => {
               </Paper>
             ))}
           </Paper>
-        </Grid>
-        <Grid item xs={3}>
+        </Grid> */}
+        {/* <Grid item xs={3}>
           <Paper>
             <Typography variant="h6" align="center">Pending</Typography>
             {pendingTickets.map(ticket => (
@@ -63,8 +63,8 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({ tickets }) => {
               </Paper>
             ))}
           </Paper>
-        </Grid>
-        <Grid item xs={3}>
+        </Grid> */}
+        {/* <Grid item xs={3}>
           <Paper>
             <Typography variant="h6" align="center">Pending</Typography>
             {pendingTickets.map(ticket => (
@@ -76,8 +76,7 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({ tickets }) => {
               </Paper>
             ))}
           </Paper>
-        </Grid>
-        {/* Repeat the above structure for 'accepted', 'resolved', and 'rejected' columns */}
+        </Grid> */}
       </Grid>
     </Container>
   );
