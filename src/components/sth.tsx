@@ -26,7 +26,7 @@ const TodoItem = ({ item, index }: TodoItemProps) => (
       >
         <Typography>{item}</Typography>
         <Box flexGrow={1} />
-        <Typography>Drag Handle</Typography>
+        <Typography>Hi</Typography>
       </Box>
     )}
   </Draggable>

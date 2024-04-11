@@ -4,6 +4,6 @@ export interface ticket{
     description: string;
     contactInfo: string;
     status: string;
-    latestUpdateTimestamp?: Date;
-    createdTimestamp?: Date;
+    latestUpdateTimestamp: Date;
+    createdTimestamp: Date;
 }
