@@ -1,5 +1,5 @@
 export interface TicketUpdateBody{
-    id: number;
+    // id: number;
     title?: string;
     description?: string;
     contactInfo?: string;

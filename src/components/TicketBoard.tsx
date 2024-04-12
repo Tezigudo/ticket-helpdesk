@@ -8,9 +8,9 @@ const TicketBoard: React.FC<TicketBoardProps> = ({ tickets }) => {
   return (
     <Box sx={{ display: "flex", justifyContent: "space-between" }}>
       <TicketList title="Pending" tickets={tickets} />
-      <TicketList title="Accepted" tickets={[]} />
-      <TicketList title="Resolved" tickets={[]} />
-      <TicketList title="Rejected" tickets={[]} />
+      <TicketList title="Accepted" tickets={tickets} />
+      <TicketList title="Resolved" tickets={tickets} />
+      <TicketList title="Rejected" tickets={tickets} />
     </Box>
   );
 };

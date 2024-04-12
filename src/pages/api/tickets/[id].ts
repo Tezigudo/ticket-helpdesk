@@ -25,8 +25,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { title, description, contactInfo, status } = req.body;
 
     try {
-      // Construct the data object for updating the ticket
-      const dataToUpdate: any = {}; // Define dataToUpdate as any type for flexibility
+      const dataToUpdate: any = {};
 
       if (title !== undefined) {
         dataToUpdate.title = title;
@@ -44,13 +43,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         dataToUpdate.status = status;
       }
 
-      // Add latestUpdateTimestamp
       dataToUpdate.latestUpdateTimestamp = new Date();
 
-      // Update the ticket in the database
       const updatedTicket = await prisma.ticket.update({
         where: {
-          id: Number(id), // Convert id to number assuming it's numeric
+          id: Number(id),
         },
         data: dataToUpdate,
       });
