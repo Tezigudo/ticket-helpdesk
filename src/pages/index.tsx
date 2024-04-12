@@ -1,11 +1,12 @@
-import React from 'react';
-import DndKitGuide from '@/components/sth';
-import TicketForm from '@/components/TicketForm';
-import { Container, Grid } from '@mui/material';
+import React, { useState } from 'react';
 import TicketCard from '@/components/TicketCard';
+import { DragDropContext, DropResult} from 'react-beautiful-dnd';
+import { Box, Typography, Button, Container } from '@mui/material';
+import { Ticket } from '@prisma/client';
+import TicketList from '@/components/TicketList';
 
 
-const tickets = [
+const dummyTickets = [
   {
     id: 1,
     title: 'Issue 1',
@@ -27,15 +28,36 @@ const tickets = [
 ];
 
 const Home: React.FC = () => {
-  return (
-  //   <div className={`mx-auto max-w-7xl py-10`}>
-  //     <div className='flex items-center justify-between gap-y-2'>
-  //     <h1 className='text-grey-800 text-3xl font-bold'>Helpdesk Support Ticket Management</h1>
+  const [tickets, setTickets] = useState<Ticket[]>(dummyTickets)
 
-  //     </div>
-  //     <TicketForm />
-  //   </div>
-    <DndKitGuide/>
+  const onDragEnd = (result: DropResult) => {
+    // Handle drag and drop logic here
+    console.log(result);
+  };
+
+  return (
+
+  
+
+    <DragDropContext onDragEnd={onDragEnd}>
+    <Container maxWidth="md">
+      <Typography variant="h4" gutterBottom>
+        Dnd-kit Guide
+      </Typography>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+
+        <TicketList title="Pending" tickets={tickets} />
+        <TicketList title="Accepted" tickets={[]} />
+        <TicketList title="Resolved" tickets={[]} />
+        <TicketList title="Rejected" tickets={[]} />
+
+      </Box>
+      <Button variant="contained" sx={{ mt: 2 }}>
+        Add Container
+      </Button>
+    </Container>
+  </DragDropContext>
+
   //   <Container>
   //   <Grid container spacing={2}>
   //     {tickets.map((ticket, index) => (
