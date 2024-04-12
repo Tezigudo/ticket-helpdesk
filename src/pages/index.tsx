@@ -35,16 +35,16 @@ const Home: React.FC = () => {
   //     </div>
   //     <TicketForm />
   //   </div>
-    // <DndKitGuide/>
-    <Container>
-    <Grid container spacing={2}>
-      {tickets.map((ticket, index) => (
-        <Grid item xs={12} sm={6} md={4} key={ticket.id}>
-          <TicketCard ticket={ticket} index={index}/>
-        </Grid>
-      ))}
-    </Grid>
-  </Container>
+    <DndKitGuide/>
+  //   <Container>
+  //   <Grid container spacing={2}>
+  //     {tickets.map((ticket, index) => (
+  //       <Grid item xs={12} sm={6} md={4} key={ticket.id}>
+  //         <TicketCard ticket={ticket} index={index}/>
+  //       </Grid>
+  //     ))}
+  //   </Grid>
+  // </Container>
 
   );
 };

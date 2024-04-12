@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Card, CardContent, Typography, Button, Modal, Box, Divider, Container } from "@mui/material";
-import { DragDropContext, Droppable, Draggable, DropResult, DraggableProvided } from "react-beautiful-dnd";
+import { Draggable, DraggableProvided } from "react-beautiful-dnd";
 import { TicketCardProps } from "@/interfaces/TicketCard";
 
 const TicketCard: React.FC<TicketCardProps> = ({ ticket, index }) => {

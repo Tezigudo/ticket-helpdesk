@@ -1,6 +1,6 @@
-import { ticket } from "./Ticket";
+import { Ticket } from "./Ticket";
 
 export interface TicketCardProps {
-    ticket: ticket;
+    ticket: Ticket;
     index: number;
   }
