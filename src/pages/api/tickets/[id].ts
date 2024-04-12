@@ -1,4 +1,4 @@
-import { TicketStatus } from "@/interfaces/TicketStatus";
+import { TicketStatus } from "@/enums/TicketStatus";
 import prisma from "@/lib/prisma";
 import { NextApiRequest, NextApiResponse } from "next";
 

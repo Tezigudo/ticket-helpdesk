@@ -5,3 +5,5 @@ export interface TicketCardProps {
     ticket: Ticket;
     index: number;
   }
+
+

@@ -13,10 +13,11 @@ const TicketList = ({ title, tickets }: TicketListProps) => (
             ref={provided.innerRef}
             {...provided.droppableProps}
             sx={{
-              backgroundColor: snapshot.isDraggingOver ? 'grey.200' : 'white',
+              backgroundColor: snapshot.isDraggingOver ? 'grey.200' : 'grey.100',
               p: 1,
-              border: '1px solid grey',
-              borderRadius: 1,
+              borderRadius: 3,
+              height: '70%',
+            width: '400',
             }}
           >
             {tickets.map((ticket, index) => (

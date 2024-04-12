@@ -18,18 +18,6 @@ const TicketCard: React.FC<TicketCardProps> = ({ ticket, index }) => {
     <Draggable draggableId={`${index}`} index={index}>
       {(provided: DraggableProvided, snapshot: DraggableProvided) => (
       
-            //   <Box
-
-            //   sx={{
-            //     display: 'flex',
-            //     alignItems: 'center',
-            //     p: 1,
-            //     my: 1,
-            //     border: '1px solid grey',
-            //     borderRadius: 1,
-            //     backgroundColor: 'white',}}
-            //     opacity: snapshot.isDragging ? 0.5 : 1        }}
-            // >
             <Container
             ref={provided.innerRef}
             {...provided.draggableProps}

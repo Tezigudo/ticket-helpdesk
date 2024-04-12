@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import TicketCard from '@/components/TicketCard';
 import { DragDropContext, DropResult} from 'react-beautiful-dnd';
-import { Box, Typography, Button, Container } from '@mui/material';
+import { Box, Typography, Button, Container} from '@mui/material';
 import { Ticket } from '@prisma/client';
 import TicketList from '@/components/TicketList';
 
@@ -18,7 +18,7 @@ const dummyTickets = [
   },
   {
     id: 2,
-    title: 'Issue 2',
+    title: 'Is',
     description: 'This is the description for Issue 2.',
     contactInfo: 'Contact: email@example.com',
     status: 'in progress',
@@ -37,7 +37,6 @@ const Home: React.FC = () => {
 
   return (
 
-  
 
     <DragDropContext onDragEnd={onDragEnd}>
     <Container maxWidth="md">
@@ -56,17 +55,10 @@ const Home: React.FC = () => {
         Add Container
       </Button>
     </Container>
+
   </DragDropContext>
 
-  //   <Container>
-  //   <Grid container spacing={2}>
-  //     {tickets.map((ticket, index) => (
-  //       <Grid item xs={12} sm={6} md={4} key={ticket.id}>
-  //         <TicketCard ticket={ticket} index={index}/>
-  //       </Grid>
-  //     ))}
-  //   </Grid>
-  // </Container>
+
 
   );
 };
