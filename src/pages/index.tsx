@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TicketCard from '@/components/TicketCard';
 import { DragDropContext, DropResult} from 'react-beautiful-dnd';
 import { Box, Typography, Button, Container} from '@mui/material';
 import { Ticket } from '@prisma/client';
 import TicketList from '@/components/TicketList';
+import TicketBoard from '@/components/TicketBoard';
+import ticketAPI from '@/(api)/ticketAPI';
 
 
 const dummyTickets = [
@@ -28,7 +30,21 @@ const dummyTickets = [
 ];
 
 const Home: React.FC = () => {
-  const [tickets, setTickets] = useState<Ticket[]>(dummyTickets)
+  const [allTickets, setAllTickets] = useState<Ticket[]>(dummyTickets)
+
+
+  useEffect(() => {
+    const getAllTickets = async () => {
+      try{
+        const res = await ticketAPI.getAll();
+        setAllTickets(res.data);
+      }catch(error){
+        console.error(error);
+        alert('Failed to fetch tickets');
+      }
+    }
+    getAllTickets();
+  }, [])
 
   const onDragEnd = (result: DropResult) => {
     // Handle drag and drop logic here
@@ -43,17 +59,10 @@ const Home: React.FC = () => {
       <Typography variant="h4" gutterBottom>
         Dnd-kit Guide
       </Typography>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-
-        <TicketList title="Pending" tickets={tickets} />
-        <TicketList title="Accepted" tickets={[]} />
-        <TicketList title="Resolved" tickets={[]} />
-        <TicketList title="Rejected" tickets={[]} />
-
-      </Box>
-      <Button variant="contained" sx={{ mt: 2 }}>
+      <TicketBoard tickets={allTickets} />
+      {/* <Button variant="contained" sx={{ mt: 2 }}>
         Add Container
-      </Button>
+      </Button> */}
     </Container>
 
   </DragDropContext>
