@@ -1,30 +1,26 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import { Button } from "@mui/material";
 import ModalDialog from "./ModalDialog";
+import { AddTicketButtonProps } from "@/interfaces/Button";
 
-const AddTicketButton: React.FC = () => {
+const AddTicketButton: React.FC<AddTicketButtonProps> = ({onTicketAdded}) => {
   const [isOpen, setIsOpen] = useState(false);
 
-
-  const handleOpen = () =>{
+  const handleOpen = () => {
     setIsOpen(true);
-  }
+  };
 
-  const handleClose = () =>{
+  const handleClose = () => {
     setIsOpen(false);
-  }
-
-
+  };
 
   return (
-
     <>
-    <Button variant="contained" onClick={handleOpen} sx={{ mt: 2 }}>
-          Add Ticket
-        </Button>
-        <ModalDialog isOpen={isOpen} onClose={handleClose}/>
-        </>
+      <Button variant="contained" onClick={handleOpen} sx={{ mt: 2 }}>
+        Add Ticket
+      </Button>
+      <ModalDialog isOpen={isOpen} onClose={handleClose} onTicketAdded={onTicketAdded}/>
+    </>
   );
 };
 

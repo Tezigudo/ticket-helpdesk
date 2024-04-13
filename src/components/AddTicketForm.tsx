@@ -9,7 +9,7 @@ const StyledTextField = styled(TextField)(({ theme }) => ({
   width: "300px",
 }));
 
-const AddTicketForm: React.FC<AddTicketFormProps> = ({ handleClose }) => {
+const AddTicketForm: React.FC<AddTicketFormProps> = ({ handleClose, onTicketAdded }) => {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [contactInfo, setContactInfo] = useState<string>("");
@@ -20,7 +20,12 @@ const AddTicketForm: React.FC<AddTicketFormProps> = ({ handleClose }) => {
     try {
         // const res = await ticketAPI.createTicket({ title, description, contactInfo });
         const res = await axios.post("/api/tickets", { title, description, contactInfo })
-        alert("Ticket added successfully");
+        if(res.status === 201) {
+        alert("Ticket added successfully")
+        onTicketAdded()
+        ;} else {
+            alert("Failed to add ticket");
+        }
         console.log(res.data);
       } catch (e) {
         console.error(e);
