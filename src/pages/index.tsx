@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import { Typography, Button, Container } from "@mui/material";
+import { Typography, Container } from "@mui/material";
 import { Ticket } from "@prisma/client";
 import TicketBoard from "@/components/TicketBoard";
 import ticketAPI from "@/(api)/ticketAPI";
 import AddTicketButton from "@/components/AddTicketButton";
+import "../app/globals.css"
 
 const Home: React.FC = () => {
   const [allTickets, setAllTickets] = useState<Ticket[]>([]);
