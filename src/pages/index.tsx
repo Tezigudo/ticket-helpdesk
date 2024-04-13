@@ -27,7 +27,7 @@ const Home: React.FC = () => {
 
   useEffect(()=> fetchTickets(), []);
 
-  const handleTicketUpdate = (newTicket: Ticket[]) => {
+  const handleTicketUpdate = () => {
     fetchTickets();
   }
 
