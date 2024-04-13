@@ -4,6 +4,7 @@ import { Typography, Button, Container } from "@mui/material";
 import { Ticket } from "@prisma/client";
 import TicketBoard from "@/components/TicketBoard";
 import ticketAPI from "@/(api)/ticketAPI";
+import AddTicketButton from "@/components/AddTicketButton";
 
 const Home: React.FC = () => {
   const [allTickets, setAllTickets] = useState<Ticket[]>([]);
@@ -67,9 +68,7 @@ const Home: React.FC = () => {
           Helpdesk Support Ticket Management
         </Typography>
         <TicketBoard tickets={allTickets} />
-        <Button variant="contained" sx={{ mt: 2 }}>
-          Add Ticket
-        </Button>
+        <AddTicketButton/>
       </Container>
     </DragDropContext>
   );

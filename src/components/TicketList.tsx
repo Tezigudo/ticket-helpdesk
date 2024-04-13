@@ -15,7 +15,9 @@ const TicketList = ({ title, tickets }: TicketListProps) => {
 
 
     return (
-    <Box>
+    <Box sx={{
+        height: '100%',
+    }}>
       <Typography variant="h6">{title}</Typography>
       <Droppable droppableId={title} type="TODO">
         {(provided: DraggableProvided, snapshot: DraggableProvided) => (
@@ -28,6 +30,8 @@ const TicketList = ({ title, tickets }: TicketListProps) => {
               borderRadius: 3,
               height: '70%',
             width: '400',
+            overflowY: 'auto',  
+
             }}
           >
             {filteredTickets.map((ticket, index) => (
@@ -37,9 +41,6 @@ const TicketList = ({ title, tickets }: TicketListProps) => {
           </Box>
         )}
       </Droppable>
-      <Button variant="contained" sx={{ mt: 1 }}>
-        Add Item
-      </Button>
     </Box>
   );}
 
