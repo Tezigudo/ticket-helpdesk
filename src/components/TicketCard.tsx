@@ -15,7 +15,7 @@ const TicketCard: React.FC<TicketCardProps> = ({ ticket, index }) => {
   };
 
   return (
-    <Draggable draggableId={`${index}`} index={index}>
+    <Draggable draggableId={`${ticket.id}`} index={index}>
       {(provided: DraggableProvided, snapshot: DraggableStateSnapshot) => (
       
             <Container

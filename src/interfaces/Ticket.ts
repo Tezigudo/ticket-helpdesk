@@ -1,7 +1,13 @@
+export interface TicketCreateBody{
+    title: string;
+    description: string;
+    contactInfo: string;
+}
+
 export interface TicketUpdateBody{
-    // id: number;
     title?: string;
     description?: string;
     contactInfo?: string;
     status?: string;
 }
+
