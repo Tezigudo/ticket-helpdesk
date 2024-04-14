@@ -32,42 +32,30 @@ const Home: React.FC = () => {
 
   const onDragEnd = (result: DropResult) => {
     const { destination, source, draggableId } = result;
-  
+
     if (!destination || result.reason === "CANCEL") {
       return;
     }
-  
-    if (
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
-    ) {
+
+    if (destination.droppableId === source.droppableId && destination.index === source.index) {
       return;
     }
-  
+
     const newTickets = [...allTickets];
-  
-    // Find the moved ticket
-    const movedTicketIndex = newTickets.findIndex(
-      (ticket) => ticket.id.toString() === draggableId
-    );
-  
+
+    const movedTicketIndex = newTickets.findIndex((ticket) => ticket.id.toString() === draggableId);
+
     if (movedTicketIndex === -1) {
-      return; // Moved ticket not found
+      return;
     }
-  
+
     const movedTicket = newTickets[movedTicketIndex];
-  
-    // Remove the moved ticket from its original position
     newTickets.splice(movedTicketIndex, 1);
-  
-    // Insert the moved ticket at the destination index
     newTickets.splice(destination.index, 0, movedTicket);
-  
-    // Update the status of the moved ticket
     movedTicket.status = destination.droppableId.toLowerCase();
-  
+
     setAllTickets(newTickets);
-  
+
     const updateTicketStatus = async () => {
       try {
         await axios.put(`/api/tickets/${parseInt(draggableId)}`, {
@@ -81,7 +69,6 @@ const Home: React.FC = () => {
     };
     updateTicketStatus();
   };
-  
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>

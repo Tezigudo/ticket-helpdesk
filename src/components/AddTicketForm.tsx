@@ -1,6 +1,6 @@
 import ticketAPI from "@/handlers/ticketAPI";
 import { AddTicketFormProps } from "@/interfaces/Form";
-import { Button, TextField, styled } from "@mui/material";
+import { Button, TextField, Typography, styled } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
 
@@ -36,6 +36,7 @@ const AddTicketForm: React.FC<AddTicketFormProps> = ({ handleClose, onTicketAdde
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center p-8">
+      <Typography variant="h4" component="h5">Add Ticket</Typography>
       <StyledTextField
         label="Title"
         variant="filled"
