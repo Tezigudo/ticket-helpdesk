@@ -28,6 +28,10 @@ const TicketList = ({ title, tickets }: TicketListProps) => {
           borderTopRightRadius: 5,
         },
         justifyContent: "space-between",
+        marginTop: "20px",
+        borderRadius: 4,
+        width: "70%",
+        margin: "10px"
       }}>
       <Typography align="center" variant="subtitle1">
         {title}

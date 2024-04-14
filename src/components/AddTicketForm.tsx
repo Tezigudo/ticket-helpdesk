@@ -1,6 +1,6 @@
 import ticketAPI from "@/handlers/ticketAPI";
 import { AddTicketFormProps } from "@/interfaces/Form";
-import { Button, TextField, Typography, styled } from "@mui/material";
+import { Button, Container, TextField, Typography, styled } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
 
@@ -35,7 +35,7 @@ const AddTicketForm: React.FC<AddTicketFormProps> = ({ handleClose, onTicketAdde
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center p-8">
+    <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center p-5">
       <Typography variant="h4" component="h5">Add Ticket</Typography>
       <StyledTextField
         label="Title"
@@ -58,7 +58,10 @@ const AddTicketForm: React.FC<AddTicketFormProps> = ({ handleClose, onTicketAdde
         value={contactInfo}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setContactInfo(e.target.value)}
       />
-      <div>
+      <Container sx={{
+        display: "flex",
+        justifyContent: "space-between",
+      }}>
         <Button
           variant="contained"
           sx={{
@@ -67,10 +70,12 @@ const AddTicketForm: React.FC<AddTicketFormProps> = ({ handleClose, onTicketAdde
           onClick={handleClose}>
           Cancel
         </Button>
-        <Button variant="contained" color="primary" type="submit">
+        <Button variant="contained" color="primary" type="submit" sx={{
+          margin: "2rem",
+        }}>
           Add Ticket
         </Button>
-      </div>
+      </Container>
     </form>
   );
 };

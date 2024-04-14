@@ -72,8 +72,13 @@ const Home: React.FC = () => {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <Container maxWidth="md">
-        <Typography variant="h4" gutterBottom>
+      <Container maxWidth="lg" sx={{
+        padding: "20px",
+      }}>
+        <Typography variant="h4" gutterBottom sx={{
+          color: "#333",
+          marginBottom: "20px"
+        }}>
           Helpdesk Support Ticket Management
         </Typography>
         <TicketBoard tickets={allTickets} />
