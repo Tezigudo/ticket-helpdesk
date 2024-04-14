@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import { Typography, Container } from "@mui/material";
+import { Typography, Container, Box } from "@mui/material";
 import { Ticket } from "@prisma/client";
 import TicketBoard from "@/components/TicketBoard";
 import ticketAPI from "@/handlers/ticketAPI";
@@ -32,19 +32,20 @@ const Home: React.FC = () => {
 
   const onDragEnd = (result: DropResult) => {
     const { destination, source, draggableId } = result;
-
     if (!destination || result.reason === "CANCEL") {
       return;
     }
-
-    if (destination.droppableId === source.droppableId && destination.index === source.index) {
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
       return;
     }
 
     const newTickets = [...allTickets];
-
-    const movedTicketIndex = newTickets.findIndex((ticket) => ticket.id.toString() === draggableId);
-
+    const movedTicketIndex = newTickets.findIndex(
+      (ticket) => ticket.id.toString() === draggableId
+    );
     if (movedTicketIndex === -1) {
       return;
     }
@@ -53,7 +54,6 @@ const Home: React.FC = () => {
     newTickets.splice(movedTicketIndex, 1);
     newTickets.splice(destination.index, 0, movedTicket);
     movedTicket.status = destination.droppableId.toLowerCase();
-
     setAllTickets(newTickets);
 
     const updateTicketStatus = async () => {
@@ -72,15 +72,22 @@ const Home: React.FC = () => {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <Container maxWidth="lg" sx={{
-        padding: "20px",
-      }}>
-        <Typography variant="h4" gutterBottom sx={{
-          color: "#333",
-          marginBottom: "20px"
-        }}>
-          Helpdesk Support Ticket Management
-        </Typography>
+      <Container maxWidth="lg" sx={{ padding: "20px" }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            marginBottom: "20px",
+          }}
+        >
+          <Typography
+            variant="h4"
+            gutterBottom
+            sx={{ color: "#333", fontWeight: "bold" }}
+          >
+            Helpdesk Support Ticket Management
+          </Typography>
+        </Box>
         <TicketBoard tickets={allTickets} />
         <AddTicketButton onTicketAdded={handleTicketUpdate} />
       </Container>

@@ -1,21 +1,7 @@
-import React, { useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import { Typography, Button, Modal, Box, Divider, IconButton, Grid, TextField } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
-
-interface TicketInfo {
-  title: string;
-  description: string;
-  contactInfo: string;
-  status: string;
-  createdTimestamp: Date;
-  latestUpdateTimestamp: Date;
-}
-
-interface TicketInfoModalProps {
-  open: boolean;
-  onClose: () => void;
-  ticket: TicketInfo;
-}
+import { TicketInfoModalProps } from '@/interfaces/Modal';
 
 const TicketInfoModal: React.FC<TicketInfoModalProps> = ({ open, onClose, ticket }) => {
   const [editMode, setEditMode] = useState<{ [key: string]: boolean }>({
@@ -65,7 +51,7 @@ const TicketInfoModal: React.FC<TicketInfoModalProps> = ({ open, onClose, ticket
                 <TextField
                   fullWidth
                   value={updatedValues.description}
-                  onChange={(e) => handleInputChange(e, 'description')}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => handleInputChange(e, 'description')}
                 />
               ) : (
                 <Typography variant="body1">{ticket.description}</Typography>

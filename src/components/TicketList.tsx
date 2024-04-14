@@ -33,7 +33,7 @@ const TicketList = ({ title, tickets }: TicketListProps) => {
         width: "70%",
         margin: "10px"
       }}>
-      <Typography align="center" variant="subtitle1">
+      <Typography align="center" variant="h6" fontWeight="bold">
         {title}
       </Typography>
       <Droppable droppableId={title} type="TODO">
