@@ -15,21 +15,38 @@ const TicketList = ({ title, tickets }: TicketListProps) => {
   return (
     <Box
       sx={{
-        height: "100%",
+        flex: 1,
+        paddingTop: "8px",
+        paddingBottom: "16px",
+        bgcolor: "#eaeaee",
+        "&:first-child": {
+          paddingLeft: "5px",
+          borderTopLeftRadius: 5,
+        },
+        "&:last-child": {
+          paddingRight: "5px",
+          borderTopRightRadius: 5,
+        },
+        justifyContent: "space-between",
       }}>
-      <Typography variant="h6">{title}</Typography>
+      <Typography align="center" variant="subtitle1">
+        {title}
+      </Typography>
       <Droppable droppableId={title} type="TODO">
         {(provided: DraggableProvided, snapshot: DraggableProvided) => (
           <Box
             ref={provided.innerRef}
             {...provided.droppableProps}
+            className={snapshot.isDraggingOver ? " isDraggingOver" : ""}
             sx={{
-              backgroundColor: snapshot.isDraggingOver ? "grey.200" : "grey.100",
-              p: 1,
-              borderRadius: 3,
-              height: "70%",
-              width: "400",
-              overflowY: "auto",
+              // backgroundColor: snapshot.isDraggingOver ? "grey.200" : "grey.100",
+              display: "flex",
+              flexDirection: "column",
+              borderRadius: 5,
+              padding: "5px",
+              "&.isDraggingOver": {
+                bgcolor: "#dadadf",
+              },
             }}>
             {filteredTickets.map((ticket, index) => (
               <TicketCard key={ticket.id} ticket={ticket} index={index} />

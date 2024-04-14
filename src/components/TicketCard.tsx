@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, CardContent, Typography, Button, Modal, Box, Divider, Container } from "@mui/material";
+import { Card, CardContent, Typography, Button, Modal, Box, Divider, Container, CardActions } from "@mui/material";
 import { Draggable, DraggableProvided, DraggableStateSnapshot } from "react-beautiful-dnd";
 import { TicketCardProps } from "@/interfaces/TicketCard";
 
@@ -18,13 +18,12 @@ const TicketCard: React.FC<TicketCardProps> = ({ ticket, index }) => {
     <Draggable draggableId={`${ticket.id}`} index={index}>
       {(provided: DraggableProvided, snapshot: DraggableStateSnapshot) => (
       
-            <Container
-            ref={provided.innerRef}
+            <Box
+            sx={{ marginBottom: 1 }}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
-            sx={{
-              opacity: snapshot.isDragging ? 0.5 : 1 
-            }}
+            ref={provided.innerRef}
+
             >
           <Card sx={{ maxWidth: 345,
             display: 'flex',
@@ -32,7 +31,10 @@ const TicketCard: React.FC<TicketCardProps> = ({ ticket, index }) => {
             p: 1,
             my: 1,
             borderRadius: 3,
-           }}>
+            opacity: snapshot.isDragging ? 0.5 : 1,
+            transform: snapshot.isDragging ? "rotate(-2deg)" : "",
+
+           }} elevation={snapshot.isDragging ? 3 : 1}>
             <CardContent>
               <Typography variant="h5" component="div">
                 {ticket.title}
@@ -40,11 +42,13 @@ const TicketCard: React.FC<TicketCardProps> = ({ ticket, index }) => {
               <Typography variant="body2" color="text.secondary">
                 {ticket.contactInfo}
               </Typography>
-              <Button onClick={handleOpenModal}>View Details</Button>
-              <Typography variant="body2" color="text.secondary">
-                id: {ticket.id}
-                </Typography>
+              <Typography sx={{ fontSize: 10 }} color="text.secondary">
+            {`id: ${ticket.id}`}
+          </Typography>
             </CardContent>
+            <CardActions>
+              <Button onClick={handleOpenModal}>View Details</Button>
+              </CardActions>
           </Card>
           <Modal
             open={openModal}
@@ -84,7 +88,7 @@ const TicketCard: React.FC<TicketCardProps> = ({ ticket, index }) => {
               <Button onClick={handleCloseModal}>Close</Button>
             </Box>
           </Modal>
-          </Container>
+          </Box>
       )}
      </Draggable>
   );
