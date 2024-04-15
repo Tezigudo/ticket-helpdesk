@@ -6,7 +6,6 @@ import TicketBoard from "@/components/TicketBoard";
 import ticketAPI from "@/handlers/ticketAPI";
 import AddTicketButton from "@/components/AddTicketButton";
 import "../app/globals.css";
-import axios from "axios";
 
 const Home: React.FC = () => {
   const [allTickets, setAllTickets] = useState<Ticket[]>([]);
@@ -58,9 +57,10 @@ const Home: React.FC = () => {
 
     const updateTicketStatus = async () => {
       try {
-        await axios.put(`/api/tickets/${parseInt(draggableId)}`, {
+        await ticketAPI.update(parseInt(draggableId), {
           status: destination.droppableId.toLowerCase(),
         });
+  
       } catch (error) {
         console.error(error);
         alert("Failed to update ticket status");

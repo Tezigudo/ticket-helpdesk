@@ -1,13 +1,14 @@
 'use client'
 import { TicketCreateBody, TicketUpdateBody } from "@/interfaces/Ticket";
-import axiosClient from "@/lib/axiosClient";
+import axios from "axios";
+
 
 
 const ticketAPI = {
-    getAll: ()=> axiosClient.get("/tickets"),
-    getOne: (id: number) => axiosClient.get(`/tickets/${id}`),
-    update: (id: number, data: TicketUpdateBody) => axiosClient.put(`/tickets/${id}`, data),
-    createTicket: (data: TicketCreateBody) => axiosClient.post("/tickets", data),
+    getAll: async ()=> await axios.get("/api/tickets"),
+    getOne: async (id: number) => await axios.get(`/api/tickets/${id}`),
+    update: async (id: number, data: TicketUpdateBody) => await axios.put(`/api/tickets/${id}`, data),
+    createTicket: async (data: TicketCreateBody) => await axios.post("/api/tickets", data),
 };
 
 export default ticketAPI;

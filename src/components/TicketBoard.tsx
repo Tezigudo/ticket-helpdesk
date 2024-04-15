@@ -1,7 +1,7 @@
 import React from "react";
 import TicketList from "./TicketList";
 import { Box } from "@mui/material";
-import { TicketBoardProps } from "@/interfaces/TicketBoard";
+import { TicketBoardProps } from "@/interfaces/TIcketBoard";
 
 const TicketBoard: React.FC<TicketBoardProps> = ({ tickets }) => {
   return (

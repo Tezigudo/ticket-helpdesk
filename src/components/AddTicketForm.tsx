@@ -1,7 +1,6 @@
 import ticketAPI from "@/handlers/ticketAPI";
 import { AddTicketFormProps } from "@/interfaces/Form";
 import { Button, Container, TextField, Typography, styled } from "@mui/material";
-import axios from "axios";
 import { useState } from "react";
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
@@ -18,8 +17,7 @@ const AddTicketForm: React.FC<AddTicketFormProps> = ({ handleClose, onTicketAdde
 
     e.preventDefault();
     try {
-        // const res = await ticketAPI.createTicket({ title, description, contactInfo });
-        const res = await axios.post("/api/tickets", { title, description, contactInfo })
+        const res = await ticketAPI.createTicket({ title, description, contactInfo });
         if(res.status === 201) {
         alert("Ticket added successfully")
         onTicketAdded()
