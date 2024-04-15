@@ -1,5 +1,6 @@
 import ticketAPI from "@/handlers/ticketAPI";
 import { AddTicketFormProps } from "@/interfaces/Form";
+import { showFailedAlert, showSuccessAlert } from "@/utils/showAlert";
 import { Button, Container, TextField, Typography, styled } from "@mui/material";
 import { useState } from "react";
 
@@ -19,15 +20,15 @@ const AddTicketForm: React.FC<AddTicketFormProps> = ({ handleClose, onTicketAdde
     try {
         const res = await ticketAPI.createTicket({ title, description, contactInfo });
         if(res.status === 201) {
-        alert("Ticket added successfully")
+          showSuccessAlert("Ticket added successfully")
         onTicketAdded()
         ;} else {
-            alert("Failed to add ticket");
+          showFailedAlert("Failed to add ticket")
         }
         console.log(res.data);
       } catch (e) {
         console.error(e);
-        alert("Failed to add ticket");
+          showFailedAlert("Failed to add ticket")
       }
     handleClose();
   };

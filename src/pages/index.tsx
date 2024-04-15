@@ -6,6 +6,7 @@ import TicketBoard from "@/components/TicketBoard";
 import ticketAPI from "@/handlers/ticketAPI";
 import AddTicketButton from "@/components/AddTicketButton";
 import "../app/globals.css";
+import { showFailedAlert } from "@/utils/showAlert";
 
 const Home: React.FC = () => {
   const [allTickets, setAllTickets] = useState<Ticket[]>([]);
@@ -17,7 +18,7 @@ const Home: React.FC = () => {
         setAllTickets(res.data);
       } catch (error) {
         console.error(error);
-        alert("Failed to fetch tickets");
+        showFailedAlert ("Failed to fetch tickets");
       }
     };
     getAllTickets();
@@ -63,7 +64,8 @@ const Home: React.FC = () => {
   
       } catch (error) {
         console.error(error);
-        alert("Failed to update ticket status");
+        // alert("Failed to update ticket status");
+        showFailedAlert("Failed to update ticket status");
         setAllTickets([...allTickets]);
       }
     };
