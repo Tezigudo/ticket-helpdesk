@@ -10,4 +10,5 @@ export interface TicketInfoModalProps {
     open: boolean;
     onClose: () => void;
     ticket: Ticket;
+    onTicketUpdate: () => void;
 }

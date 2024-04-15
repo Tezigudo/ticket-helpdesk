@@ -1,11 +1,11 @@
 import { TicketListProps } from "@/interfaces/TicketList";
 import { Droppable, DraggableProvided } from "react-beautiful-dnd";
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import TicketCard from "./TicketCard";
 import { useEffect, useState } from "react";
 import { Ticket } from "@prisma/client/edge";
 
-const TicketList = ({ title, tickets }: TicketListProps) => {
+const TicketList = ({ title, tickets, onTicketUpdate }: TicketListProps) => {
   const [filteredTickets, setFilteredTickets] = useState<Ticket[]>([]);
 
   useEffect(() => {
@@ -55,7 +55,7 @@ const TicketList = ({ title, tickets }: TicketListProps) => {
               },
             }}>
             {filteredTickets.map((ticket, index) => (
-              <TicketCard key={ticket.id} ticket={ticket} index={index} />
+              <TicketCard key={ticket.id} ticket={ticket} index={index} onTicketUpdate={onTicketUpdate}/>
             ))}
             {provided.placeholder}
           </Box>

@@ -13,7 +13,7 @@ import { TicketCardProps } from "@/interfaces/TicketCard";
 import TicketInfoModal from "./Modal/TicketInfoModal";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 
-const TicketCard: React.FC<TicketCardProps> = ({ ticket, index }) => {
+const TicketCard: React.FC<TicketCardProps> = ({ ticket, index, onTicketUpdate }) => {
   const [openModal, setOpenModal] = useState(false);
 
   const handleOpenModal = () => {
@@ -46,7 +46,7 @@ const TicketCard: React.FC<TicketCardProps> = ({ ticket, index }) => {
             }}
             elevation={snapshot.isDragging ? 3 : 1}>
             <CardContent>
-              <Typography variant="h5" component="div">
+              <Typography variant="h6" component="div">
                 {ticket.title}
               </Typography>
               <Typography variant="body2" color="text.secondary">
@@ -57,13 +57,12 @@ const TicketCard: React.FC<TicketCardProps> = ({ ticket, index }) => {
               </Typography>
             </CardContent>
             <CardActions>
-              {/* <Button onClick={handleOpenModal}>View Details</Button> */}
               <IconButton onClick={handleOpenModal}>
                 <VisibilityIcon color="primary" />
               </IconButton>
             </CardActions>
           </Card>
-              <TicketInfoModal open={openModal} onClose={handleCloseModal} ticket={ticket} />
+              <TicketInfoModal open={openModal} onClose={handleCloseModal} ticket={ticket} onTicketUpdate={onTicketUpdate} />
         </Box>
       )}
     </Draggable>

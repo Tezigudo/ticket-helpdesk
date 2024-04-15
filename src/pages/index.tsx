@@ -90,7 +90,7 @@ const Home: React.FC = () => {
             Helpdesk Support Ticket Management
           </Typography>
         </Box>
-        <TicketBoard tickets={allTickets} />
+        <TicketBoard tickets={allTickets} onTicketUpdate={handleTicketUpdate} />
         <AddTicketButton onTicketAdded={handleTicketUpdate} />
       </Container>
     </DragDropContext>
