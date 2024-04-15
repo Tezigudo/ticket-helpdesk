@@ -31,7 +31,7 @@ const TicketList = ({ title, tickets }: TicketListProps) => {
         marginTop: "20px",
         borderRadius: 4,
         width: "70%",
-        margin: "10px"
+        margin: "10px",
       }}>
       <Typography align="center" variant="h6" fontWeight="bold">
         {title}
@@ -48,6 +48,8 @@ const TicketList = ({ title, tickets }: TicketListProps) => {
               flexDirection: "column",
               borderRadius: 5,
               padding: "5px",
+              height: "60vh",
+              overflowY: "auto",
               "&.isDraggingOver": {
                 bgcolor: "#dadadf",
               },

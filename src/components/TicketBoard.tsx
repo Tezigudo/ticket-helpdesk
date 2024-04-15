@@ -5,7 +5,7 @@ import { TicketBoardProps } from "@/interfaces/TIcketBoard";
 
 const TicketBoard: React.FC<TicketBoardProps> = ({ tickets }) => {
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", height: "80vh" }}>
+    <Box sx={{ display: "flex", flexDirection: "column", height: "70vh" }}>
       <Box sx={{ display: "flex", overflowX: "auto" }}>
         <TicketList title="Pending" tickets={tickets} />
         <TicketList title="Accepted" tickets={tickets} />
