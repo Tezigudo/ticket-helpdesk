@@ -3,13 +3,13 @@ import { TicketStatus } from "@/enums/TicketStatus";
 export function getTicketBgColor(status: TicketStatus) {
   switch (status.toLocaleLowerCase()) {
     case TicketStatus.PENDING:
-      return "#FFD180";
+      return "#E0E0E0";
     case TicketStatus.ACCEPTED:
-      return "#A5D6A7";
+      return "#DCEDC8";
     case TicketStatus.RESOLVED:
-      return "#81D4FA";
+      return "#E3F2FD";
     case TicketStatus.REJECTED:
-      return "#FF8080";
+      return "#FFCDD2";
     default:
       return "#EF9A9A";
   }

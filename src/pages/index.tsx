@@ -10,6 +10,7 @@ import { showFailedAlert } from "@/utils/showAlert";
 
 const Home: React.FC = () => {
   const [allTickets, setAllTickets] = useState<Ticket[]>([]);
+  const [sortMode, setSortMode] = useState<"asc"| "desc">("desc");
 
   const fetchTickets = () => {
     const getAllTickets = async () => {
@@ -64,7 +65,6 @@ const Home: React.FC = () => {
   
       } catch (error) {
         console.error(error);
-        // alert("Failed to update ticket status");
         showFailedAlert("Failed to update ticket status");
         setAllTickets([...allTickets]);
       }
@@ -90,7 +90,7 @@ const Home: React.FC = () => {
             Helpdesk Support Ticket Management
           </Typography>
         </Box>
-        <TicketBoard tickets={allTickets} onTicketUpdate={handleTicketUpdate} />
+        <TicketBoard tickets={allTickets} onTicketUpdate={handleTicketUpdate} sortMode={sortMode}/>
         <AddTicketButton onTicketAdded={handleTicketUpdate} />
       </Container>
     </DragDropContext>
