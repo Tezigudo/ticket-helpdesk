@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { DragDropContext, DropResult } from "react-beautiful-dnd";
+import { DropResult } from "react-beautiful-dnd";
 import { Typography, Container, Box } from "@mui/material";
 import { Ticket } from "@prisma/client";
 import TicketBoard from "@/components/TicketBoard";
@@ -9,9 +9,19 @@ import "../app/globals.css";
 import { showFailedAlert } from "@/utils/showAlert";
 import SortButton from "@/components/Button/SortButton";
 
+import dynamic from "next/dynamic";
+
+const DragDropContext = dynamic(
+  () =>
+    import("react-beautiful-dnd").then((mod) => {
+      return mod.DragDropContext;
+    }),
+  { ssr: false }
+);
+
 const Home: React.FC = () => {
   const [allTickets, setAllTickets] = useState<Ticket[]>([]);
-  const [sortMode, setSortMode] = useState<"asc"| "desc">("desc");
+  const [sortMode, setSortMode] = useState<"asc" | "desc">("desc");
 
   const fetchTickets = () => {
     const getAllTickets = async () => {
@@ -20,7 +30,7 @@ const Home: React.FC = () => {
         setAllTickets(res.data);
       } catch (error) {
         console.error(error);
-        showFailedAlert ("Failed to fetch tickets");
+        showFailedAlert("Failed to fetch tickets");
       }
     };
     getAllTickets();
@@ -34,24 +44,19 @@ const Home: React.FC = () => {
 
   const handleSortModeChange = (mode: "asc" | "desc") => {
     setSortMode(mode);
-  }
+  };
 
   const onDragEnd = (result: DropResult) => {
     const { destination, source, draggableId } = result;
     if (!destination || result.reason === "CANCEL") {
       return;
     }
-    if (
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
-    ) {
+    if (destination.droppableId === source.droppableId && destination.index === source.index) {
       return;
     }
 
     const newTickets = [...allTickets];
-    const movedTicketIndex = newTickets.findIndex(
-      (ticket) => ticket.id.toString() === draggableId
-    );
+    const movedTicketIndex = newTickets.findIndex((ticket) => ticket.id.toString() === draggableId);
     if (movedTicketIndex === -1) {
       return;
     }
@@ -67,7 +72,6 @@ const Home: React.FC = () => {
         await ticketAPI.update(parseInt(draggableId), {
           status: destination.droppableId.toLowerCase(),
         });
-  
       } catch (error) {
         console.error(error);
         showFailedAlert("Failed to update ticket status");
@@ -78,28 +82,23 @@ const Home: React.FC = () => {
   };
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <Container maxWidth="lg" sx={{ padding: "20px" }}>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            marginBottom: "20px",
-          }}
-        >
-          <Typography
-            variant="h4"
-            gutterBottom
-            sx={{ color: "#333", fontWeight: "bold" }}
-          >
-            Helpdesk Support Ticket Management
-          </Typography>
-        </Box>
-          <SortButton sortMode={sortMode} onSortChange={handleSortModeChange} />
-        <TicketBoard tickets={allTickets} onTicketUpdate={handleTicketUpdate} sortMode={sortMode}/>
-        <AddTicketButton onTicketAdded={handleTicketUpdate} />
-      </Container>
-    </DragDropContext>
+    <Container maxWidth="lg" sx={{ padding: "20px" }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          marginBottom: "20px",
+        }}>
+        <Typography variant="h4" gutterBottom sx={{ color: "#333", fontWeight: "bold" }}>
+          Helpdesk Support Ticket Management
+        </Typography>
+      </Box>
+      <SortButton sortMode={sortMode} onSortChange={handleSortModeChange} />
+      <DragDropContext onDragEnd={onDragEnd}>
+        <TicketBoard tickets={allTickets} onTicketUpdate={handleTicketUpdate} sortMode={sortMode} />
+      </DragDropContext>
+      <AddTicketButton onTicketAdded={handleTicketUpdate} />
+    </Container>
   );
 };
 

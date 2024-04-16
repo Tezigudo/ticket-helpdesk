@@ -1,18 +1,22 @@
 import { SortButtonProps } from "@/interfaces/Button";
-import { Sort } from "@mui/icons-material";
 import { Box, IconButton, Typography } from "@mui/material";
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 const SortButton: React.FC<SortButtonProps> = ({ sortMode, onSortChange }) => {
     return(
-        <Box>
+        <Box display={"flex"} alignItems={"baseline"}>
         <Typography variant="body1" sx={{ marginRight: 1 }}>
-          Sorted by:
+          Sorted by Latest Update time:
         </Typography>
         <Typography variant="body1" sx={{ marginRight: 1, fontWeight: "bold" }}>
           {sortMode === "asc" ? "Ascending" : "Descending"}
         </Typography>
-        <IconButton onClick={()=> onSortChange(sortMode === "asc" ? "desc" : "asc")} size="large">
-          <Sort />
+        <IconButton onClick={()=> onSortChange(sortMode === "asc" ? "desc" : "asc")} size="medium" sx={{
+            alignItems: "center",
+        }}>
+        {/* <ArrowDropUpIcon /> */}
+        {sortMode === "asc" ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
         </IconButton>
     </Box>
     )

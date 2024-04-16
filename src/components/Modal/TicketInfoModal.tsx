@@ -5,6 +5,7 @@ import { TicketInfoModalProps } from "@/interfaces/Modal";
 import { TicketStatus } from "@/enums/TicketStatus";
 import ticketAPI from "@/handlers/ticketAPI";
 import { showSuccessAlert } from "@/utils/showAlert";
+import { convertISOToReadableTime } from "@/utils/convertDate";
 
 const TicketInfoModal: React.FC<TicketInfoModalProps> = ({ open, onClose, ticket, onTicketUpdate }) => {
   const [editMode, setEditMode] = useState<{ [key: string]: boolean }>({
@@ -60,7 +61,7 @@ const TicketInfoModal: React.FC<TicketInfoModalProps> = ({ open, onClose, ticket
           <Grid item xs={12} container direction="row" alignItems="center" spacing={1}>
             <Grid item>
               <Typography variant="body1" fontWeight="bold">
-                Description:
+                Description: 
               </Typography>
             </Grid>
             <Grid item xs>
@@ -148,21 +149,21 @@ const TicketInfoModal: React.FC<TicketInfoModalProps> = ({ open, onClose, ticket
           <Grid item xs={12} container direction="row" alignItems="center">
             <Grid item>
               <Typography variant="body1" fontWeight="bold">
-                Created Timestamp:
+                Created Timestamp: 
               </Typography>
             </Grid>
             <Grid item>
-              <Typography variant="body1">{ticket.createdTimestamp.toLocaleString()}</Typography>
+              <Typography variant="body1">{convertISOToReadableTime(ticket.createdTimestamp.toLocaleString())}</Typography>
             </Grid>
           </Grid>
           <Grid item xs={12} container direction="row" alignItems="center">
             <Grid item>
               <Typography variant="body1" fontWeight="bold">
-                Latest Update Timestamp:
+                Latest Update Timestamp: 
               </Typography>
             </Grid>
             <Grid item>
-              <Typography variant="body1">{ticket.latestUpdateTimestamp.toLocaleString()}</Typography>
+              <Typography variant="body1">{convertISOToReadableTime(ticket.latestUpdateTimestamp.toLocaleString())}</Typography>
             </Grid>
           </Grid>
           <Grid item xs={12}>
