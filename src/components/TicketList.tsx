@@ -4,6 +4,8 @@ import { Box, Typography } from "@mui/material";
 import TicketCard from "./TicketCard";
 import { useEffect, useState } from "react";
 import { Ticket } from "@prisma/client/edge";
+import { getTicketBgColor } from "@/utils/getTicketBgColor";
+import { TicketStatus } from "@/enums/TicketStatus";
 
 const TicketList = ({ title, tickets, onTicketUpdate }: TicketListProps) => {
   const [filteredTickets, setFilteredTickets] = useState<Ticket[]>([]);
@@ -51,8 +53,10 @@ const TicketList = ({ title, tickets, onTicketUpdate }: TicketListProps) => {
               height: "60vh",
               overflowY: "auto",
               "&.isDraggingOver": {
-                bgcolor: "#dadadf",
+                // bgcolor: "#dadadf",
+                opacity: 0.7
               },
+              backgroundColor: getTicketBgColor(title as TicketStatus),
             }}>
             {filteredTickets.map((ticket, index) => (
               <TicketCard key={ticket.id} ticket={ticket} index={index} onTicketUpdate={onTicketUpdate}/>

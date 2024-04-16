@@ -8,9 +8,9 @@ const TicketBoard: React.FC<TicketBoardProps> = ({ tickets, onTicketUpdate }) =>
     <Box sx={{ display: "flex", flexDirection: "column", height: "70vh" }}>
       <Box sx={{ display: "flex", overflowX: "auto" }}>
         <TicketList title="Pending" tickets={tickets} onTicketUpdate={onTicketUpdate}/>
-        <TicketList title="Accepted" tickets={tickets} />
-        <TicketList title="Resolved" tickets={tickets} />
-        <TicketList title="Rejected" tickets={tickets} />
+        <TicketList title="Accepted" tickets={tickets} onTicketUpdate={onTicketUpdate} />
+        <TicketList title="Resolved" tickets={tickets} onTicketUpdate={onTicketUpdate}/>
+        <TicketList title="Rejected" tickets={tickets} onTicketUpdate={onTicketUpdate}/>
       </Box>
     </Box>
   );
