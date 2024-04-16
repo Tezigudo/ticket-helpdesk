@@ -3,7 +3,7 @@ import { DropResult } from "react-beautiful-dnd";
 import { Typography, Container, Box } from "@mui/material";
 import { Ticket } from "@prisma/client";
 import TicketBoard from "@/components/TicketBoard";
-import ticketAPI from "@/handlers/ticketAPI";
+import ticketAPI from "@/(api)/ticketAPI";
 import AddTicketButton from "@/components/Button/AddTicketButton";
 import "../app/globals.css";
 import { showFailedAlert } from "@/utils/showAlert";
@@ -65,6 +65,7 @@ const Home: React.FC = () => {
     newTickets.splice(movedTicketIndex, 1);
     newTickets.splice(destination.index, 0, movedTicket);
     movedTicket.status = destination.droppableId.toLowerCase();
+    movedTicket.latestUpdateTimestamp = new Date();
     setAllTickets(newTickets);
 
     const updateTicketStatus = async () => {

@@ -22,7 +22,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const tickets = await prisma.ticket.findMany({
         orderBy: {
           latestUpdateTimestamp: "desc",
-          // createdTimestamp: "desc",
         },
       });
       res.status(200).json(tickets);

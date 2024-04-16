@@ -1,4 +1,4 @@
-import ticketAPI from "@/handlers/ticketAPI";
+import ticketAPI from "@/(api)/ticketAPI";
 import { AddTicketFormProps } from "@/interfaces/Form";
 import { showFailedAlert, showSuccessAlert } from "@/utils/showAlert";
 import { Button, Container, TextField, Typography, styled } from "@mui/material";

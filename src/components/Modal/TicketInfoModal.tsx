@@ -3,7 +3,7 @@ import { Typography, Button, Modal, Box, Divider, IconButton, Grid, TextField, S
 import EditIcon from "@mui/icons-material/Edit";
 import { TicketInfoModalProps } from "@/interfaces/Modal";
 import { TicketStatus } from "@/enums/TicketStatus";
-import ticketAPI from "@/handlers/ticketAPI";
+import ticketAPI from "@/(api)/ticketAPI";
 import { showSuccessAlert } from "@/utils/showAlert";
 import { convertISOToReadableTime } from "@/utils/convertDate";
 

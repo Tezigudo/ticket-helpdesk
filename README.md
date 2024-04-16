@@ -38,3 +38,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 https://editor-next.swagger.io/
 [apidocs](src/docs/api-docs.yaml)
+
+
+npx prisma migrate dev --name init
+npx prisma generate dev
