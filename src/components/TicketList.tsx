@@ -28,7 +28,7 @@ const TicketList = ({ title, tickets, onTicketUpdate, sortMode }: TicketListProp
       sx={{
         flex: 1,
         paddingTop: "8px",
-        paddingBottom: "16px",
+        paddingBottom: "9px",
         bgcolor: "#eaeaee",
         "&:first-of-type": {
           paddingLeft: "5px",
