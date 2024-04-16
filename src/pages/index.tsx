@@ -4,9 +4,10 @@ import { Typography, Container, Box } from "@mui/material";
 import { Ticket } from "@prisma/client";
 import TicketBoard from "@/components/TicketBoard";
 import ticketAPI from "@/handlers/ticketAPI";
-import AddTicketButton from "@/components/AddTicketButton";
+import AddTicketButton from "@/components/Button/AddTicketButton";
 import "../app/globals.css";
 import { showFailedAlert } from "@/utils/showAlert";
+import SortButton from "@/components/Button/SortButton";
 
 const Home: React.FC = () => {
   const [allTickets, setAllTickets] = useState<Ticket[]>([]);
@@ -30,6 +31,10 @@ const Home: React.FC = () => {
   const handleTicketUpdate = () => {
     fetchTickets();
   };
+
+  const handleSortModeChange = (mode: "asc" | "desc") => {
+    setSortMode(mode);
+  }
 
   const onDragEnd = (result: DropResult) => {
     const { destination, source, draggableId } = result;
@@ -90,6 +95,7 @@ const Home: React.FC = () => {
             Helpdesk Support Ticket Management
           </Typography>
         </Box>
+          <SortButton sortMode={sortMode} onSortChange={handleSortModeChange} />
         <TicketBoard tickets={allTickets} onTicketUpdate={handleTicketUpdate} sortMode={sortMode}/>
         <AddTicketButton onTicketAdded={handleTicketUpdate} />
       </Container>

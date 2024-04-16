@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "@mui/material";
-import ModalDialog from "./Modal/ModalDialog";
+import ModalDialog from "../Modal/ModalDialog";
 import { AddTicketButtonProps } from "@/interfaces/Button";
 
 const AddTicketButton: React.FC<AddTicketButtonProps> = ({onTicketAdded}) => {

@@ -21,7 +21,7 @@ const TicketList = ({ title, tickets, onTicketUpdate, sortMode }: TicketListProp
               : new Date(a.latestUpdateTimestamp).getTime() - new Date(b.latestUpdateTimestamp).getTime())
         )
     );
-  }, [tickets]);
+  }, [tickets, sortMode]);
 
   return (
     <Box
