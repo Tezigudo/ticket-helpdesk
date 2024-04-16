@@ -16,7 +16,7 @@ const AddTicketButton: React.FC<AddTicketButtonProps> = ({onTicketAdded}) => {
 
   return (
     <>
-      <Button variant="contained" onClick={handleOpen} sx={{ mt: 2 }}>
+      <Button variant="contained" onClick={handleOpen} >
         Add Ticket
       </Button>
       <ModalDialog isOpen={isOpen} onClose={handleClose} onTicketAdded={onTicketAdded}/>

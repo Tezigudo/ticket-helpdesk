@@ -82,7 +82,7 @@ const Home: React.FC = () => {
   };
 
   return (
-    <Container maxWidth="lg" sx={{ padding: "20px" }}>
+    <Container maxWidth="lg" sx={{ padding: "20px",mt: 4 }}>
       <Box
         sx={{
           display: "flex",
@@ -93,11 +93,17 @@ const Home: React.FC = () => {
           Helpdesk Support Ticket Management
         </Typography>
       </Box>
+      <Box sx={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+      }}>
       <SortButton sortMode={sortMode} onSortChange={handleSortModeChange} />
+      <AddTicketButton onTicketAdded={handleTicketUpdate} />
+      </Box>
       <DragDropContext onDragEnd={onDragEnd}>
         <TicketBoard tickets={allTickets} onTicketUpdate={handleTicketUpdate} sortMode={sortMode} />
       </DragDropContext>
-      <AddTicketButton onTicketAdded={handleTicketUpdate} />
     </Container>
   );
 };
