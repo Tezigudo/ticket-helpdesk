@@ -14,9 +14,8 @@ import {
 import EditIcon from "@mui/icons-material/Edit";
 import { TicketInfoModalProps } from "@/interfaces/Modal";
 import { TicketStatus } from "@/enums/TicketStatus";
-import ticketAPI from "@/(api)/ticketAPI";
-import { showSuccessAlert } from "@/utils/showAlert";
 import { convertISOToReadableTime } from "@/utils/convertDate";
+import ticketAPI from "@/(api)/ticketAPI";
 
 const TicketInfoModal: React.FC<TicketInfoModalProps> = ({
   open,
