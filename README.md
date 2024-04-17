@@ -1,6 +1,6 @@
 # Ticket Helpdesk
 
-This project is a ticket helpdesk system built with [Next.js](https://nextjs.org/) and [Prisma](https://www.prisma.io/), designed to manage support tickets efficiently.
+This project is a ticket helpdesk system built with [Next.js](https://nextjs.org/), [Prisma](https://www.prisma.io/), and [MaterialUI](https://mui.com/material-ui/), designed to manage support tickets efficiently.
 
 ---
 
