@@ -2,8 +2,11 @@ import { TicketStatus } from "@/enums/TicketStatus";
 import prisma from "@/lib/prisma";
 import { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const { id } = req.query;
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
+  const { id } = req.query;
 
   if (req.method === "GET") {
     try {
@@ -37,8 +40,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         dataToUpdate.contactInfo = contactInfo;
       }
       if (status !== undefined) {
-        if(!Object.values(TicketStatus).includes(status)){
-            return res.status(400).json({ error: "Invalid Ticket Status" });
+        if (!Object.values(TicketStatus).includes(status)) {
+          return res.status(400).json({ error: "Invalid Ticket Status" });
         }
         dataToUpdate.status = status;
       }

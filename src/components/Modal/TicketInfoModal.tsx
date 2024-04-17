@@ -1,5 +1,16 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { Typography, Button, Modal, Box, Divider, IconButton, Grid, TextField, Select, MenuItem } from "@mui/material";
+import {
+  Typography,
+  Button,
+  Modal,
+  Box,
+  Divider,
+  IconButton,
+  Grid,
+  TextField,
+  Select,
+  MenuItem,
+} from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { TicketInfoModalProps } from "@/interfaces/Modal";
 import { TicketStatus } from "@/enums/TicketStatus";
@@ -7,7 +18,12 @@ import ticketAPI from "@/(api)/ticketAPI";
 import { showSuccessAlert } from "@/utils/showAlert";
 import { convertISOToReadableTime } from "@/utils/convertDate";
 
-const TicketInfoModal: React.FC<TicketInfoModalProps> = ({ open, onClose, ticket, onTicketUpdate }) => {
+const TicketInfoModal: React.FC<TicketInfoModalProps> = ({
+  open,
+  onClose,
+  ticket,
+  onTicketUpdate,
+}) => {
   const [editMode, setEditMode] = useState<{ [key: string]: boolean }>({
     title: false,
     description: false,
@@ -15,19 +31,27 @@ const TicketInfoModal: React.FC<TicketInfoModalProps> = ({ open, onClose, ticket
     status: false,
   });
 
-  const [updatedValues, setUpdatedValues] = useState<{ [key: string]: string }>({
-    title: ticket.title,
-    description: ticket.description,
-    contactInfo: ticket.contactInfo,
-    status: ticket.status,
-  });
+  const [updatedValues, setUpdatedValues] = useState<{ [key: string]: string }>(
+    {
+      title: ticket.title,
+      description: ticket.description,
+      contactInfo: ticket.contactInfo,
+      status: ticket.status,
+    },
+  );
 
   const handleEditClick = (field: string) => {
     setEditMode((prevState) => ({ ...prevState, [field]: true }));
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, field: string) => {
-    setUpdatedValues((prevState) => ({ ...prevState, [field]: e.target.value }));
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    field: string,
+  ) => {
+    setUpdatedValues((prevState) => ({
+      ...prevState,
+      [field]: e.target.value,
+    }));
   };
 
   const handleSaveClick = async (field: string) => {
@@ -37,18 +61,23 @@ const TicketInfoModal: React.FC<TicketInfoModalProps> = ({ open, onClose, ticket
   };
 
   useEffect(() => {
-      if(!open){
-        setEditMode({
-          title: false,
-          description: false,
-          contactInfo: false,
-          status: false,
-        })
-      }
-  }, [open])
+    if (!open) {
+      setEditMode({
+        title: false,
+        description: false,
+        contactInfo: false,
+        status: false,
+      });
+    }
+  }, [open]);
 
   return (
-    <Modal open={open} onClose={onClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+    <Modal
+      open={open}
+      onClose={onClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
       <Box
         sx={{
           position: "absolute",
@@ -60,19 +89,25 @@ const TicketInfoModal: React.FC<TicketInfoModalProps> = ({ open, onClose, ticket
           boxShadow: 24,
           p: 4,
           borderRadius: 3,
-        }}>
+        }}
+      >
         <Grid container spacing={2}>
-          <Grid item xs={12} sx={{
-            display: "flex",
-            alignItems:"baseline",
-            wordSpacing: "1px",
-          
-          }}>
+          <Grid
+            item
+            xs={12}
+            sx={{
+              display: "flex",
+              alignItems: "baseline",
+              wordSpacing: "1px",
+            }}
+          >
             {editMode.title ? (
               <TextField
                 component="h2"
                 value={updatedValues.title}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => handleInputChange(e, "title")}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  handleInputChange(e, "title")
+                }
               />
             ) : (
               <Typography variant="h5" component="h2">
@@ -91,7 +126,14 @@ const TicketInfoModal: React.FC<TicketInfoModalProps> = ({ open, onClose, ticket
           <Grid item xs={12}>
             <Divider />
           </Grid>
-          <Grid item xs={12} container direction="row" alignItems="center" spacing={1}>
+          <Grid
+            item
+            xs={12}
+            container
+            direction="row"
+            alignItems="center"
+            spacing={1}
+          >
             <Grid item>
               <Typography variant="body1" fontWeight="bold">
                 Description:
@@ -102,7 +144,9 @@ const TicketInfoModal: React.FC<TicketInfoModalProps> = ({ open, onClose, ticket
                 <TextField
                   fullWidth
                   value={updatedValues.description}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) => handleInputChange(e, "description")}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    handleInputChange(e, "description")
+                  }
                   multiline
                 />
               ) : (
@@ -111,7 +155,9 @@ const TicketInfoModal: React.FC<TicketInfoModalProps> = ({ open, onClose, ticket
             </Grid>
             <Grid item>
               {editMode.description ? (
-                <Button onClick={() => handleSaveClick("description")}>Save</Button>
+                <Button onClick={() => handleSaveClick("description")}>
+                  Save
+                </Button>
               ) : (
                 <IconButton onClick={() => handleEditClick("description")}>
                   <EditIcon />
@@ -119,7 +165,14 @@ const TicketInfoModal: React.FC<TicketInfoModalProps> = ({ open, onClose, ticket
               )}
             </Grid>
           </Grid>
-          <Grid item xs={12} container direction="row" alignItems="center" spacing={1}>
+          <Grid
+            item
+            xs={12}
+            container
+            direction="row"
+            alignItems="center"
+            spacing={1}
+          >
             <Grid item>
               <Typography variant="body1" fontWeight="bold">
                 Contact Info:
@@ -138,7 +191,9 @@ const TicketInfoModal: React.FC<TicketInfoModalProps> = ({ open, onClose, ticket
             </Grid>
             <Grid item>
               {editMode.contactInfo ? (
-                <Button onClick={() => handleSaveClick("contactInfo")}>Save</Button>
+                <Button onClick={() => handleSaveClick("contactInfo")}>
+                  Save
+                </Button>
               ) : (
                 <IconButton onClick={() => handleEditClick("contactInfo")}>
                   <EditIcon />
@@ -146,7 +201,14 @@ const TicketInfoModal: React.FC<TicketInfoModalProps> = ({ open, onClose, ticket
               )}
             </Grid>
           </Grid>
-          <Grid item xs={12} container direction="row" alignItems="center" spacing={1}>
+          <Grid
+            item
+            xs={12}
+            container
+            direction="row"
+            alignItems="center"
+            spacing={1}
+          >
             <Grid item>
               <Typography variant="body1" fontWeight="bold">
                 Status:
@@ -158,7 +220,8 @@ const TicketInfoModal: React.FC<TicketInfoModalProps> = ({ open, onClose, ticket
                   labelId="status-select-label"
                   id="status-select"
                   value={updatedValues.status}
-                  onChange={(e) => handleInputChange(e, "status")}>
+                  onChange={(e) => handleInputChange(e, "status")}
+                >
                   {Object.values(TicketStatus).map((status) => (
                     <MenuItem key={status} value={status}>
                       {status}
@@ -179,7 +242,14 @@ const TicketInfoModal: React.FC<TicketInfoModalProps> = ({ open, onClose, ticket
               )}
             </Grid>
           </Grid>
-          <Grid item xs={12} container direction="row" alignItems="center" spacing={"1px"}>
+          <Grid
+            item
+            xs={12}
+            container
+            direction="row"
+            alignItems="center"
+            spacing={"1px"}
+          >
             <Grid item>
               <Typography variant="body1" fontWeight="bold">
                 Created Timestamp:
@@ -187,11 +257,20 @@ const TicketInfoModal: React.FC<TicketInfoModalProps> = ({ open, onClose, ticket
             </Grid>
             <Grid item>
               <Typography variant="body1">
-                {convertISOToReadableTime(ticket.createdTimestamp.toLocaleString())}
+                {convertISOToReadableTime(
+                  ticket.createdTimestamp.toLocaleString(),
+                )}
               </Typography>
             </Grid>
           </Grid>
-          <Grid item xs={12} container direction="row" alignItems="center" spacing={"1px"}>
+          <Grid
+            item
+            xs={12}
+            container
+            direction="row"
+            alignItems="center"
+            spacing={"1px"}
+          >
             <Grid item>
               <Typography variant="body1" fontWeight="bold">
                 Latest Update Timestamp:
@@ -199,7 +278,9 @@ const TicketInfoModal: React.FC<TicketInfoModalProps> = ({ open, onClose, ticket
             </Grid>
             <Grid item>
               <Typography variant="body1">
-                {convertISOToReadableTime(ticket.latestUpdateTimestamp.toLocaleString())}
+                {convertISOToReadableTime(
+                  ticket.latestUpdateTimestamp.toLocaleString(),
+                )}
               </Typography>
             </Grid>
           </Grid>

@@ -7,19 +7,25 @@ import { Ticket } from "@prisma/client/edge";
 import { getTicketBgColor } from "@/utils/getTicketBgColor";
 import { TicketStatus } from "@/enums/TicketStatus";
 
-const TicketList = ({ title, tickets, onTicketUpdate, sortMode }: TicketListProps) => {
+const TicketList = ({
+  title,
+  tickets,
+  onTicketUpdate,
+  sortMode,
+}: TicketListProps) => {
   const [filteredTickets, setFilteredTickets] = useState<Ticket[]>([]);
 
   useEffect(() => {
     setFilteredTickets(
       tickets
         .filter((ticket) => ticket.status === title.toLowerCase())
-        .sort(
-          (a: Ticket, b: Ticket) =>(
-            sortMode === "asc"
-              ? new Date(b.latestUpdateTimestamp).getTime() - new Date(a.latestUpdateTimestamp).getTime()
-              : new Date(a.latestUpdateTimestamp).getTime() - new Date(b.latestUpdateTimestamp).getTime())
-        )
+        .sort((a: Ticket, b: Ticket) =>
+          sortMode === "asc"
+            ? new Date(b.latestUpdateTimestamp).getTime() -
+              new Date(a.latestUpdateTimestamp).getTime()
+            : new Date(a.latestUpdateTimestamp).getTime() -
+              new Date(b.latestUpdateTimestamp).getTime(),
+        ),
     );
   }, [tickets, sortMode]);
 
@@ -43,7 +49,8 @@ const TicketList = ({ title, tickets, onTicketUpdate, sortMode }: TicketListProp
         borderRadius: 3,
         width: "70%",
         margin: "10px",
-      }}>
+      }}
+    >
       <Typography align="center" variant="h6" fontWeight="bold">
         {title}
       </Typography>
@@ -66,9 +73,15 @@ const TicketList = ({ title, tickets, onTicketUpdate, sortMode }: TicketListProp
                 opacity: 0.7,
               },
               backgroundColor: getTicketBgColor(title as TicketStatus),
-            }}>
+            }}
+          >
             {filteredTickets.map((ticket, index) => (
-              <TicketCard key={ticket.id} ticket={ticket} index={index} onTicketUpdate={onTicketUpdate} />
+              <TicketCard
+                key={ticket.id}
+                ticket={ticket}
+                index={index}
+                onTicketUpdate={onTicketUpdate}
+              />
             ))}
             {provided.placeholder}
           </Box>

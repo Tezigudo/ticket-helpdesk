@@ -1,8 +1,8 @@
 export interface AddTicketButtonProps {
-    onTicketAdded: () => void;
+  onTicketAdded: () => void;
 }
 
 export interface SortButtonProps {
-    sortMode: 'asc' | 'desc';
-    onSortChange: (mode: 'asc' | 'desc') => void;
+  sortMode: "asc" | "desc";
+  onSortChange: (mode: "asc" | "desc") => void;
 }

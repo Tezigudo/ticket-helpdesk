@@ -1,20 +1,20 @@
-import { createSwaggerSpec } from 'next-swagger-doc';
+import { createSwaggerSpec } from "next-swagger-doc";
 
 export const getApiDocs = async () => {
   const spec = createSwaggerSpec({
-    apiFolder: 'app/api', // define api folder under app folder
+    apiFolder: "app/api", // define api folder under app folder
     definition: {
-      openapi: '3.0.0',
+      openapi: "3.0.0",
       info: {
-        title: 'Next Swagger API Example',
-        version: '1.0',
+        title: "Next Swagger API Example",
+        version: "1.0",
       },
       components: {
         securitySchemes: {
           BearerAuth: {
-            type: 'http',
-            scheme: 'bearer',
-            bearerFormat: 'JWT',
+            type: "http",
+            scheme: "bearer",
+            bearerFormat: "JWT",
           },
         },
       },

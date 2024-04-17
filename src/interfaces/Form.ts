@@ -1,4 +1,4 @@
 export interface AddTicketFormProps {
-    handleClose: () => void;
-    onTicketAdded: () => void;
+  handleClose: () => void;
+  onTicketAdded: () => void;
 }

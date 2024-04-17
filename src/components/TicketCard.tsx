@@ -7,12 +7,20 @@ import {
   CardActions,
   IconButton,
 } from "@mui/material";
-import { Draggable, DraggableProvided, DraggableStateSnapshot } from "react-beautiful-dnd";
+import {
+  Draggable,
+  DraggableProvided,
+  DraggableStateSnapshot,
+} from "react-beautiful-dnd";
 import { TicketCardProps } from "@/interfaces/TicketCard";
 import TicketInfoModal from "./Modal/TicketInfoModal";
-import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityIcon from "@mui/icons-material/Visibility";
 
-const TicketCard: React.FC<TicketCardProps> = ({ ticket, index, onTicketUpdate }) => {
+const TicketCard: React.FC<TicketCardProps> = ({
+  ticket,
+  index,
+  onTicketUpdate,
+}) => {
   const [openModal, setOpenModal] = useState(false);
 
   const handleOpenModal = () => {
@@ -30,7 +38,8 @@ const TicketCard: React.FC<TicketCardProps> = ({ ticket, index, onTicketUpdate }
           sx={{ marginBottom: 1 }}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
-          ref={provided.innerRef}>
+          ref={provided.innerRef}
+        >
           <Card
             sx={{
               maxWidth: 345,
@@ -41,9 +50,10 @@ const TicketCard: React.FC<TicketCardProps> = ({ ticket, index, onTicketUpdate }
               borderRadius: 3,
               opacity: snapshot.isDragging ? 0.5 : 1,
               transform: snapshot.isDragging ? "rotate(-2deg)" : "",
-              marginX: "3px"
+              marginX: "3px",
             }}
-            elevation={snapshot.isDragging ? 3 : 1}>
+            elevation={snapshot.isDragging ? 3 : 1}
+          >
             <CardContent>
               <Typography variant="h6" component="div">
                 {ticket.title}
@@ -61,7 +71,12 @@ const TicketCard: React.FC<TicketCardProps> = ({ ticket, index, onTicketUpdate }
               </IconButton>
             </CardActions>
           </Card>
-              <TicketInfoModal open={openModal} onClose={handleCloseModal} ticket={ticket} onTicketUpdate={onTicketUpdate} />
+          <TicketInfoModal
+            open={openModal}
+            onClose={handleCloseModal}
+            ticket={ticket}
+            onTicketUpdate={onTicketUpdate}
+          />
         </Box>
       )}
     </Draggable>

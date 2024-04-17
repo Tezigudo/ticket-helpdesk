@@ -1,44 +1,106 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Ticket Helpdesk
+
+This project is a ticket helpdesk system built with [Next.js](https://nextjs.org/) and [Prisma](https://www.prisma.io/), designed to manage support tickets efficiently.
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
+Before running the project, make sure you have the following installed:
+
+- Node.js
+- npm or yarn or bun
+
+### Installation
+
+1.  Clone the repository:
+
+```sh
+git clone https://github.com/Tezigudo/ticket-helpdesk.git
+```
+
+2.  Go to project directory
+
+```sh
+cd ticket-helpdesk
+```
+
+3.  Install dependencies:
+
+```sh
+# npm
+npm install
+
+# yarn
+yarn install
+
+# bun
+bun install
+```
+
+4. Run database migrations:
+
+```sh
+# npm or yarn
+npx prisma migrate dev --name init
+
+# bun
+bunx prisma migrate dev --name init
+```
+
+5. Generate Prisma client:
+
+```sh
+# npm or yarn
+npx prisma generate dev
+
+# bun
+bunx prisma generate dev
+```
+
+### Running the Application
+
+To run the application in development mode, use the following command:
+
+```sh
+
+# npm
 npm run dev
-# or
+
+# yarn
 yarn dev
-# or
-pnpm dev
-# or
+
+# bun
 bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Mocking Data
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+To populate the database with mock ticket data, you can run the mock API endpoint provided:
 
-## Learn More
+```sh
+GET: /api/tickets/mock
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Running Tests
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To run tests, you can use the following commands:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```sh
+# npm
+npm test
+# yarn
+yarn test
+# bun
+bun test
+```
 
-## Deploy on Vercel
+These commands will execute the test suites and provide feedback on the test results.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### API Documentation
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-
-https://editor-next.swagger.io/
-[apidocs](src/docs/api-docs.yaml)
-
-
-npx prisma migrate dev --name init
-npx prisma generate dev
+For detailed documentation of the API endpoints, refer to the [API documentation](https://app.swaggerhub.com/apis-docs/GODJANGG/ticket-management_api/1.0.0).

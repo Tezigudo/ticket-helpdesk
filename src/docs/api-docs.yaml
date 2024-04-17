@@ -29,7 +29,7 @@ paths:
               required:
                 - title
       responses:
-        '201':
+        "201":
           description: Created
           content:
             application/json:
@@ -48,12 +48,12 @@ paths:
                   contactInfo:
                     type: string
                     description: Contact information for the ticket
-        '500':
+        "500":
           description: Internal Server Error
     get:
       summary: Get all tickets
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -74,11 +74,11 @@ paths:
                     contactInfo:
                       type: string
                       description: Contact information for the ticket
-        '500':
+        "500":
           description: Internal Server Error
     servers:
       - url: /api/tickets
-  '/api/tickets/{id}':
+  /api/tickets/{id}:
     post:
       summary: Update a ticket
       parameters:
@@ -107,7 +107,7 @@ paths:
               required:
                 - title
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -126,7 +126,39 @@ paths:
                   contactInfo:
                     type: string
                     description: Updated contact information for the ticket
-        '500':
+        "500":
           description: Internal Server Error
     servers:
       - url: /api/tickets/{id}
+  /api/tickets/mock:
+    get:
+      summary: Mock data for tickets
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Success message
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                          description: Title of the ticket
+                        description:
+                          type: string
+                          description: Description of the ticket
+                        contactInfo:
+                          type: string
+                          description: Contact information for the ticket
+        "500":
+          description: Internal Server Error
+    servers:
+      - url: /api/tickets/mock

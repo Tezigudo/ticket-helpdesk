@@ -16,7 +16,7 @@ const DragDropContext = dynamic(
     import("react-beautiful-dnd").then((mod) => {
       return mod.DragDropContext;
     }),
-  { ssr: false }
+  { ssr: false },
 );
 
 const Home: React.FC = () => {
@@ -51,12 +51,17 @@ const Home: React.FC = () => {
     if (!destination || result.reason === "CANCEL") {
       return;
     }
-    if (destination.droppableId === source.droppableId && destination.index === source.index) {
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
       return;
     }
 
     const newTickets = [...allTickets];
-    const movedTicketIndex = newTickets.findIndex((ticket) => ticket.id.toString() === draggableId);
+    const movedTicketIndex = newTickets.findIndex(
+      (ticket) => ticket.id.toString() === draggableId,
+    );
     if (movedTicketIndex === -1) {
       return;
     }
@@ -83,27 +88,38 @@ const Home: React.FC = () => {
   };
 
   return (
-    <Container maxWidth="lg" sx={{ padding: "20px",mt: 4 }}>
+    <Container maxWidth="lg" sx={{ padding: "20px", mt: 4 }}>
       <Box
         sx={{
           display: "flex",
           justifyContent: "center",
           marginBottom: "20px",
-        }}>
-        <Typography variant="h4" gutterBottom sx={{ color: "#333", fontWeight: "bold" }}>
+        }}
+      >
+        <Typography
+          variant="h4"
+          gutterBottom
+          sx={{ color: "#333", fontWeight: "bold" }}
+        >
           Helpdesk Support Ticket Management
         </Typography>
       </Box>
-      <Box sx={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-      }}>
-      <SortButton sortMode={sortMode} onSortChange={handleSortModeChange} />
-      <AddTicketButton onTicketAdded={handleTicketUpdate} />
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <SortButton sortMode={sortMode} onSortChange={handleSortModeChange} />
+        <AddTicketButton onTicketAdded={handleTicketUpdate} />
       </Box>
       <DragDropContext onDragEnd={onDragEnd}>
-        <TicketBoard tickets={allTickets} onTicketUpdate={handleTicketUpdate} sortMode={sortMode} />
+        <TicketBoard
+          tickets={allTickets}
+          onTicketUpdate={handleTicketUpdate}
+          sortMode={sortMode}
+        />
       </DragDropContext>
     </Container>
   );
