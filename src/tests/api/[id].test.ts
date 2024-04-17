@@ -1,7 +1,7 @@
 import { createMocks } from "node-mocks-http";
 import handler from "@/pages/api/tickets/[id]";
-import * as prismaMock from "@/lib/prisma";
-import { NextApiRequest, NextApiResponse } from "next";
+// import * as prismaMock from "@/lib/prisma";
+// import { NextApiRequest, NextApiR/esponse } from "next";
 import { describe, test, expect } from "@jest/globals";
 
 // jest.mock('@/lib/prisma', () => ({
